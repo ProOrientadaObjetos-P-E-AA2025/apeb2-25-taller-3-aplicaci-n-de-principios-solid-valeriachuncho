@@ -16,6 +16,6 @@ public class PagoPredial extends Pago {
 
     @Override
     public String toString() {
-        return String.format("Pago Predial (Propiedad %.2f): %.2f", valorPropiedad, valorPago);
+        return String.format("Pago Predial de (Propiedad %.2f): %.2f", valorPropiedad, valorPago);
     }
 }
