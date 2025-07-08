@@ -1,39 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package p3;
 
-import p1.MatriculaCampamento;
-import p1.MatriculaColegio;
-import p1.MatriculaEscuela;
-import p1.MatriculaJardin;
-import p1.MatriculaMaternal;
+import java.util.ArrayList;
+import p1.*;
 import p2.TipoMatricula;
 
-/**
- *
- * @author reroes
- */
 public class Principal {
     public static void main(String[] args) {
-        TipoMatricula tipos = new TipoMatricula();
-        
-        MatriculaCampamento mcamp = new MatriculaCampamento();
-        mcamp.establecerTarifa();
-        
-        MatriculaColegio mcolegio = new MatriculaColegio();
-        mcolegio.establecerTarifa();
-        
-        MatriculaEscuela mescuela = new MatriculaEscuela();
-        MatriculaJardin mjardin = new MatriculaJardin();
-        MatriculaMaternal mmaternal = new MatriculaMaternal();
-        MatriculaMaternal mmaternal2 = new MatriculaMaternal();
-        
-        tipos.establecerMatriculaCampamento(mcamp);
-        tipos.establecerMatriculaColegio(mcolegio);
-        tipos.establecerPromedioTarifas();
-        System.out.printf("%s\n", tipos);
+        ArrayList<Matricula> lista = new ArrayList<>();
+
+        MatriculaCampamento m1 = new MatriculaCampamento();
+        m1.establecerTarifa();
+
+        MatriculaColegio m2 = new MatriculaColegio();
+        m2.establecerTarifa();
+
+        MatriculaEscuela m3 = new MatriculaEscuela();
+        m3.establecerTarifa();
+
+        MatriculaJardin m4 = new MatriculaJardin();
+        m4.establecerTarifa();
+
+        MatriculaMaternal m5 = new MatriculaMaternal();
+        m5.establecerTarifa();
+
+        lista.add(m1);
+        lista.add(m2);
+        lista.add(m3);
+        lista.add(m4);
+        lista.add(m5);
+
+        TipoMatricula tipo = new TipoMatricula();
+        tipo.establecerMatriculas(lista);
+        tipo.establecerPromedioTarifas();
+
+        System.out.println(tipo);
     }
 }

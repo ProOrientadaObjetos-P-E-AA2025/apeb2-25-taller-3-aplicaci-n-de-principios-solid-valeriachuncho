@@ -1,47 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete03;
 
 import java.util.ArrayList;
 import paquete01.Televisor;
 
-/**
- *
- * @author reroes
- */
 public class VentasTvs {
-    double precioTotal;
-    ArrayList<Televisor> televisores;
-    String marcasVendidas;
-    
-    public void establecerTelevisores(ArrayList<Televisor> t){
+    private ArrayList<Televisor> televisores;
+
+    public void establecerTelevisores(ArrayList<Televisor> t) {
         televisores = t;
     }
-    
-    public ArrayList<Televisor> obtenerTelevisores(){
+
+    public ArrayList<Televisor> obtenerTelevisores() {
         return televisores;
     }
-    
-    public void establecerPrecioTotal(){
-        double s = 0;
-        for (int i = 0; i < televisores.size(); i++) {
-            s = s + televisores.get(i).obtenerPrecio();
-            
+
+    public double obtenerPrecioTotal() {
+        double total = 0;
+        for (Televisor t : televisores) {
+            total += t.obtenerPrecio();
         }
-        precioTotal = s;
-        
+        return total;
     }
-    
-    public double obtenerPrecioTotal(){
-        return precioTotal;
+
+    public Televisor obtenerTelevisorMasCaro() {
+        Televisor masCaro = televisores.get(0);
+        for (Televisor t : televisores) {
+            if (t.obtenerPrecio() > masCaro.obtenerPrecio()) {
+                masCaro = t;
+            }
+        }
+        return masCaro;
     }
-    
-        
-    public String obtenerMarcasVendidas(){
-        return marcasVendidas;
+
+    public String obtenerMarcasVendidas() {
+        String resultado = "";
+        for (Televisor t : televisores) {
+            resultado += t.obtenerMarca() + "\n";
+        }
+        return resultado;
     }
-    
+
 }

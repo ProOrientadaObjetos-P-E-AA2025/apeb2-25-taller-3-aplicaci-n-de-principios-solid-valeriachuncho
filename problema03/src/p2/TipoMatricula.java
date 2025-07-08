@@ -1,51 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package p2;
 
-import p1.MatriculaCampamento;
-import p1.MatriculaColegio;
+import java.util.ArrayList;
+import p1.Matricula;
 
-/**
- *
- * @author reroes
- */
 public class TipoMatricula {
+    private ArrayList<Matricula> matriculas = new ArrayList<>();
     private double promedioMatriculas;
-    private MatriculaCampamento campamento;
-    private MatriculaColegio colegio;
-    // private MatriculaEscuela escuela;
-    // private MatriculaJardin jardin;
-    // private MatriculaMaternal maternal;
-    // private MatriculaMaternal maternal2;
-    
-    public void establecerMatriculaCampamento(MatriculaCampamento c){
-        campamento = c;
+
+    public void establecerMatriculas(ArrayList<Matricula> lista) {
+        matriculas = lista;
     }
-    
-    public void establecerMatriculaColegio(MatriculaColegio c){
-        colegio = c;
+
+    public ArrayList<Matricula> obtenerMatriculas() {
+        return matriculas;
     }
-    
-    public MatriculaCampamento obtenerMatriculaCampamento(){
-        return campamento;
+
+    public void establecerPromedioTarifas() {
+        double suma = 0;
+        for (Matricula m : matriculas) {
+            suma += m.obtenerTarifa();
+        }
+        promedioMatriculas = suma / matriculas.size();
     }
-    
-    public MatriculaColegio obtenerMatriculaColegio(){
-        return colegio;
-    }
-    
-    public void establecerPromedioTarifas(){
-        promedioMatriculas = (obtenerMatriculaCampamento().obtenerTarifa() + 
-                obtenerMatriculaColegio().obtenerTarifa())/2;
-        
-    }
-    
-    public double obtenerPromedioTarifas(){
+
+    public double obtenerPromedioTarifas() {
         return promedioMatriculas;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("------ Tarifas de Matrículas ------\n");
+        for (Matricula m : matriculas) {
+            sb.append(String.format("%-12s : $%,7.2f\n", m.obtenerNombre(), m.obtenerTarifa()));
+        }
+        sb.append("----------------------------------\n");
+        sb.append(String.format("Promedio general : $%,7.2f\n", obtenerPromedioTarifas()));
+        sb.append("----------------------------------\n");
+        return sb.toString();
+    }
+
 }
