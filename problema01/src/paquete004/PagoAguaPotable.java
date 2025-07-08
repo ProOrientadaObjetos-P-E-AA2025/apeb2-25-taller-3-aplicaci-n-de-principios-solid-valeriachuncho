@@ -1,30 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package paquete004;
 
-import paquete001.Persona;
+public class PagoAguaPotable extends Pago {
+    private String tipo;
+    private double tarifaFija;
+    private double metrosCubicosConsumo;
+    private double costoConsumoCubicos;
 
-/**
- *
- * @author reroes
- */
-public class PagoAguaPotable {
-    public double calcularPago(String tipo){
-        double pago = 0;
-        if(tipo.equals("comercial")){
-            double tarifaFija = 2.20;
-            double metrosCubicosConsumo = 100.2;
-            double costoConsumoCubicos = 0.2;
-            pago = tarifaFija + (metrosCubicosConsumo * costoConsumoCubicos) + 15;
-        }else{
-            double tarifaFija = 2.20;
-            double metrosCubicosConsumo = 100.2;
-            double costoConsumoCubicos = 0.2;
-            pago = tarifaFija + (metrosCubicosConsumo * costoConsumoCubicos);
+    public PagoAguaPotable(String tipo, double tarifaFija, double metrosCubicosConsumo, double costoConsumoCubicos) {
+        this.tipo = tipo;
+        this.tarifaFija = tarifaFija;
+        this.metrosCubicosConsumo = metrosCubicosConsumo;
+        this.costoConsumoCubicos = costoConsumoCubicos;
+    }
+
+    @Override
+    public void calcularPago() {
+        valorPago = tarifaFija + (metrosCubicosConsumo * costoConsumoCubicos);
+        if (tipo.equalsIgnoreCase("comercial")) {
+            valorPago += 15;
         }
-        
-        return pago;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Pago Agua (%s): %.2f", tipo, valorPago);
     }
 }

@@ -1,38 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package paquete003;
 
-import paquete001.Persona;
-import paquete004.PagoAguaPotable;
-import paquete004.PagoLuzElectrica;
-import paquete004.PagoPredial;
-import paquete004.PagoTelefonoConvencional;
+import paquete004.Pago;
+import java.util.ArrayList;
 
-/**
- *
- * @author reroes
- */
 public class BilleteraPagos {
-    public Persona persona;
-    public double gastoPagos;
-    public String mes;
-    public PagoAguaPotable aguaCasa;
-    public PagoAguaPotable aguaComercio;
-    public PagoLuzElectrica luzCasa;
-    public PagoLuzElectrica luzComercio;
-    public PagoPredial casa1;
-    public PagoPredial casa2;
-    public PagoTelefonoConvencional telefonoCasa;
-    public PagoTelefonoConvencional telefonoFinca;
-    
-    public String toString(){
-        /*
-            Se debe presentar el reporte que incluya
-            información correspondiente oportuna
-        */
-        return "Presentar Reporte";
+    private ArrayList<Pago> listaPagos = new ArrayList<>();
+    private double gastoPagos;
+    private String mes;
+
+    public void agregarPago(Pago pago) {
+        pago.calcularPago();
+        listaPagos.add(pago);
+        gastoPagos += pago.getValorPago();
     }
-    
+
+    public void setMes(String mes) {
+        this.mes = mes;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("REPORTE DE PAGOS\n");
+        sb.append("Mes: ").append(mes != null ? mes : "No especificado").append("\n\n");
+
+        for (Pago p : listaPagos) {
+            sb.append(p.toString()).append("\n");
+        }
+
+        sb.append("\nGasto total: ").append(String.format("%.2f", gastoPagos));
+        return sb.toString();
+    }
 }
